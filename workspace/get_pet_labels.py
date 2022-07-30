@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/get_pet_labels.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                  
+# PROGRAMMER: Gambhir Rathore
+# DATE CREATED: 2022-07-30                                  
 # REVISED DATE: 
 # PURPOSE: Create the function get_pet_labels that creates the pet labels from 
 #          the image's filename. This function inputs: 
@@ -18,6 +18,7 @@
 ##
 # Imports python modules
 from os import listdir
+from time import perf_counter
 
 # TODO 2: Define get_pet_labels function below please be certain to replace None
 #       in the return statement with results_dic dictionary that you create 
@@ -40,6 +41,49 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
+    results_dic = dict()
+    filename_list = listdir(image_dir)
+    pet_label_list = []
+    for filename in filename_list :
+      pet_label_list.append(create_pet_label(filename))
+
+    for idx in range(0, len(filename_list), 1):
+      if filename_list[idx] not in results_dic:
+         results_dic[filename_list[idx]] = [pet_label_list[idx]]
+      else:
+         print("** Warning: Key=", filename_list[idx], 
+               "already exists in results_dic with value =", 
+               results_dic[filename_list[idx]])
     # Replace None with the results_dic dictionary that you created with this
     # function
-    return None
+    return results_dic
+
+def create_pet_label (image_name) : 
+  """
+    Be sure to format the pet labels so that they are in all lower case letters
+    and with leading and trailing whitespace characters stripped from them.
+    (ex. filename = 'Boston_terrier_02259.jpg' Pet label = 'boston terrier')
+    Parameters:
+     image_name - name of images that are to be (string)
+    Returns:
+      pet_label - pet image label (string)
+    """
+  # Sets string to lower case letters
+  low_image_name = image_name.lower()
+  # Splits lower case string by _ to break into words 
+  word_list_image_name = low_image_name.split("_")
+  # Create pet_label starting as empty string
+  pet_label = ""
+
+  # Loops to check if word in pet name is only
+  # alphabetic characters - if true append word
+  # to pet_label separated by trailing space 
+  for word in word_list_image_name :
+    if word.isalpha():
+        pet_label += word + " "
+
+  # Strip off starting/trailing whitespace characters
+  pet_label = pet_label.strip()
+
+  # Prints resulting pet_label
+  return pet_label
