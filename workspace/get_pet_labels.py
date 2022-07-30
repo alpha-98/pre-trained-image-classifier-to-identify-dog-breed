@@ -42,18 +42,18 @@ def get_pet_labels(image_dir):
          index 0 = pet image label (string)
     """
     results_dic = dict()
-    filename_list = listdir(image_dir)
-    pet_label_list = []
-    for filename in filename_list :
-      pet_label_list.append(create_pet_label(filename))
+    filenames = listdir(image_dir)
+    pet_labels = []
+    for filename in filenames :
+      pet_labels.append(create_pet_label(filename))
 
-    for idx in range(0, len(filename_list), 1):
-      if filename_list[idx] not in results_dic:
-         results_dic[filename_list[idx]] = [pet_label_list[idx]]
+    for idx in range(0, len(filenames), 1):
+      if filenames[idx] not in results_dic:
+         results_dic[filenames[idx]] = [pet_labels[idx]]
       else:
-         print("** Warning: Key=", filename_list[idx], 
+         print("** Warning: Key=", filenames[idx], 
                "already exists in results_dic with value =", 
-               results_dic[filename_list[idx]])
+               results_dic[filenames[idx]])
     # Replace None with the results_dic dictionary that you created with this
     # function
     return results_dic
