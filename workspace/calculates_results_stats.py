@@ -84,8 +84,8 @@ def calculates_results_stats(results_dic):
         "pct_correct_notdogs" : 0.0
     }
 
+    results_stats_dic['n_images'] = len(results_dic)
     for key,label in results_dic.items() :
-        results_stats_dic['n_images'] = len(key)
         if (label[3] == 1) :
                 results_stats_dic['n_dogs_img'] += 1
         if (label[3] == 0) :
@@ -94,11 +94,11 @@ def calculates_results_stats(results_dic):
                 results_stats_dic['n_correct_dogs'] += 1
         if (label[3] == 0 and label[4] == 0) :
                 results_stats_dic["n_correct_notdogs"] += 1
-        if (label[3] == 1 and label[2] == 1) :
+        if (label[2] == 1 and label[3] == 1) :
                 results_stats_dic["n_correct_breed"] += 1
         if (label[2] == 1) :
-                results_stats_dic["n_match"] += 1 
-    
+                results_stats_dic["n_match"] += 1
+
     results_stats_dic["pct_correct_dogs"] = ( results_stats_dic["n_correct_dogs"] / results_stats_dic["n_dogs_img"] ) * 100
     results_stats_dic["pct_correct_notdogs"] = ( results_stats_dic["n_correct_notdogs"] / results_stats_dic["n_notdogs_img"] ) * 100
     results_stats_dic["pct_correct_breed"] = ( results_stats_dic["n_correct_breed"] / results_stats_dic["n_dogs_img"] ) * 100

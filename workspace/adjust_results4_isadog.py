@@ -38,6 +38,9 @@
 #       data type so no return is needed.
 #
 #  
+from cmath import log
+
+
 def adjust_results4_isadog(results_dic, dogfile):
     """
     Adjusts the results dictionary to determine if classifier correctly 
@@ -68,14 +71,23 @@ def adjust_results4_isadog(results_dic, dogfile):
     Returns:
            None - results_dic is mutable data type so no return needed.
     """ 
+    dognames_dic = dict()
 
     with open(dogfile, 'r') as f:
-      dog_names = f.read()
-    dog_names = dog_names.rstrip()
+      for line in f :
+        line = line.strip()
+        if line not in dognames_dic :
+          dognames_dic[line] = 1
     for key, label in results_dic.items() :
-        if (label[0] in dog_names) :
-          label.extend([1,1])
+        if label[0] in dognames_dic :
+          if label[1] in dognames_dic :
+            label.extend((1,1))
+          else : 
+            label.extend((1,0))   
         else :
-          label.extend([0,0])
+          if label[1] in dognames_dic :
+            label.extend((0,1))
+          else : 
+            label.extend((0,0))
 
     None
