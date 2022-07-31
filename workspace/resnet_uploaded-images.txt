@@ -1,0 +1,78 @@
+Command Line Arguments:
+     dir = uploaded_images/ 
+    arch = resnet 
+ dogfile = dognames.txt
+
+Pet Image Label Dictionary has 4 key-value pairs.
+Below are 4 of them:
+ 1 key:                    Cat_001.jpg  label:                        cat
+ 2 key:               Cupboard_001.jpg  label:                   cupboard
+ 3 key:                    Dog_001.jpg  label:                        dog
+ 4 key:                    Dog_002.jpg  label:                        dog
+
+     MATCH:
+
+                   Cat_001.jpg: 
+Real:                        cat   Classifier:              egyptian cat, cat
+
+ NOT A MATCH:
+
+              Cupboard_001.jpg: 
+Real:                   cupboard   Classifier:        wardrobe, closet, press
+
+                   Dog_001.jpg: 
+Real:                        dog   Classifier:               golden retriever
+
+                   Dog_002.jpg: 
+Real:                        dog   Classifier:               golden retriever
+
+# Total Images 4 # Matches: 1 # NOT Matches: 3
+
+     MATCH:
+
+                   Cat_001.jpg: 
+Real:                        cat   Classifier:              egyptian cat, cat  
+PetLabelDog: 0  ClassLabelDog: 0
+
+ NOT A MATCH:
+
+              Cupboard_001.jpg: 
+Real:                   cupboard   Classifier:        wardrobe, closet, press  
+PetLabelDog: 0  ClassLabelDog: 0
+
+                   Dog_001.jpg: 
+Real:                        dog   Classifier:               golden retriever  
+PetLabelDog: 1  ClassLabelDog: 1
+
+                   Dog_002.jpg: 
+Real:                        dog   Classifier:               golden retriever  
+PetLabelDog: 1  ClassLabelDog: 1
+
+# Total Images 4 # Matches: 1 # NOT Matches: 3
+
+ ** Statistics from calculates_results_stats() function:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+
+ ** Check Statistics - calculated from this function as a check:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+----------------
+CNN model architecture : resnet
+----------------
+Counts:
+Number of Images : 4
+Number of Dog Images : 2
+Number of "Not-a" Dog Images : 2
+----------------
+Percentage Calculations:
+100.0% Correct Dogs
+100.0% Correct "Not-a" Dog
+0.0% Correct Breed
+25.0% Match 
+----------------
+Missclassified Breed's of Dog : 
+pet_label : dog , classifier_label : golden retriever
+pet_label : dog , classifier_label : golden retriever
+
+** Total Elapsed Runtime: 0:0:0
